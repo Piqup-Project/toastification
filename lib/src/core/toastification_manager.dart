@@ -221,27 +221,32 @@ class ToastificationManager {
               context: context,
               removeTop: true,
               removeBottom: true,
-              child: AnimatedList(
-                key: listGlobalKey,
-                clipBehavior: config.clipBehavior,
-                initialItemCount: notifications.length,
-                reverse: alignment.y >= 0,
-                primary: true,
-                shrinkWrap: true,
-                itemBuilder: (
-                  BuildContext context,
-                  int index,
-                  Animation<double> animation,
-                ) {
-                  final item = notifications[index];
+              child: ScrollConfiguration(
+                behavior: ScrollConfiguration.of(context).copyWith(
+                  overscroll: false,
+                ),
+                child: AnimatedList(
+                  key: listGlobalKey,
+                  clipBehavior: config.clipBehavior,
+                  initialItemCount: notifications.length,
+                  reverse: alignment.y >= 0,
+                  primary: true,
+                  shrinkWrap: true,
+                  itemBuilder: (
+                    BuildContext context,
+                    int index,
+                    Animation<double> animation,
+                  ) {
+                    final item = notifications[index];
 
-                  return ToastHolderWidget(
-                    item: item,
-                    animation: animation,
-                    alignment: alignment,
-                    transformerBuilder: _toastAnimationBuilder(item),
-                  );
-                },
+                    return ToastHolderWidget(
+                      item: item,
+                      animation: animation,
+                      alignment: alignment,
+                      transformerBuilder: _toastAnimationBuilder(item),
+                    );
+                  },
+                ),
               ),
             ),
           ),
