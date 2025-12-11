@@ -45,7 +45,7 @@ class ToastificationConfig extends Equatable {
   });
 
   final AlignmentGeometry alignment;
-  final double itemWidth;
+  final double? itemWidth;
 
   /// The ClipBehavior of [AnimatedList], used as entry point for all [ToastificationItem]s' widgets under the hood. The default value is [Clip.none].
   final Clip clipBehavior;
